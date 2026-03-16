@@ -1,0 +1,27 @@
+name: cards-psql
+services:
+
+  supercards:
+    image: docker.id/serbriss/supercards:0.0.1-SNAPSHOT
+    pull_policy: never
+    container_name: supercards
+    env_file:
+      - .env
+    ports:
+      - "8199:8199"
+
+  db:
+    container_name: db
+    image: postgres:12
+    hostname: "postgrescards"
+    environment: # environment variables for the Postgres container
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports: # port exposed to the host machine
+      - "5432:5432"
+    volumes: # volume used to persist data
+      - pgdata:/var/lib/postgresql/data
+
+volumes: # volume creation
+  pgdata: {}

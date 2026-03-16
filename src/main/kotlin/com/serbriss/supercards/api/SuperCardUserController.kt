@@ -6,7 +6,6 @@ import com.serbriss.supercards.exception.UserNotFoundException
 import com.serbriss.supercards.repository.SuperCardUserRepository
 import com.serbriss.supercards.repository.entity.SuperCardUser
 import com.serbriss.supercards.util.userToResponse
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
