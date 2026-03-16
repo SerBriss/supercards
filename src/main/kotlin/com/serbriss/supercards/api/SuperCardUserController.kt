@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -26,7 +27,7 @@ class SuperCardUserController(private val repository: SuperCardUserRepository) {
     }
 
     @PostMapping
-    fun createUser(@RequestBody userRequest: SuperCardUserRequest): ResponseEntity<SuperCardUserResponse> {
+    fun createUser(@Valid @RequestBody userRequest: SuperCardUserRequest): ResponseEntity<SuperCardUserResponse> {
         val createdUser = repository.save(
             SuperCardUser(
                 username = userRequest.username,
@@ -45,7 +46,7 @@ class SuperCardUserController(private val repository: SuperCardUserRepository) {
     @PutMapping("/{id}")
     fun updateUser(
         @PathVariable id: Long,
-        @RequestBody userRequest: SuperCardUserRequest
+        @Valid @RequestBody userRequest: SuperCardUserRequest
     ): ResponseEntity<SuperCardUserResponse> {
         val existingUser = repository.findById(id).orElseThrow { UserNotFoundException(id) }
         val updatedUser = existingUser.copy(username = userRequest.username, email = userRequest.email)
