@@ -1,0 +1,14 @@
+apiVersion: v2
+name: supercards-stack
+description: Umbrella chart for Supercards app + PostgreSQL
+type: application
+version: 0.1.0
+dependencies:
+  - name: supercards
+    version: "0.1.0"
+    repository: "file://../supercards"         # local chart reference
+
+  - name: postgresql
+    version: "18.5.14"                          # pin this — Bitnami changes key layout between major versions
+    repository: "https://charts.bitnami.com/bitnami"
+    condition: postgresql.enabled

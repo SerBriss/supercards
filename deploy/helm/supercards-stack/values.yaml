@@ -1,0 +1,28 @@
+# ── Bitnami PostgreSQL subchart ───────────────────────────────────────────────
+postgresql:
+  enabled: true
+  auth:
+    username: postgres
+    password: postgres
+    database: postgres
+  primary:
+    persistence:
+      enabled: true
+      size: 1Gi
+
+# ── Supercards app subchart ───────────────────────────────────────────────────
+supercards:
+  replicaCount: 1
+  image:
+    repository: docker.id/serbriss/supercards
+    tag: "0.0.1-SNAPSHOT"
+    pullPolicy: Never
+  service:
+    type: ClusterIP
+    port: 8199
+  db:
+    # Bitnami names the service "<release>-postgresql"
+    # With `helm install stack ...` → stack-postgresql
+    jdbcUrl: "jdbc:postgresql://stack-postgresql:5432/postgres"
+    username: postgres
+    password: postgres

@@ -1,0 +1,28 @@
+replicaCount: 1
+
+image:
+  repository: docker.id/serbriss/supercards
+  tag: "0.0.1-SNAPSHOT"
+  pullPolicy: Never        # "Never" for local minikube; "IfNotPresent" otherwise
+
+service:
+  type: ClusterIP
+  port: 8199
+
+ingress:
+  enabled: false
+  className: ""
+  host: supercards.local
+
+resources: {}
+
+db:
+  jdbcUrl: ""              # set by caller or umbrella chart
+  username: postgres
+  password: postgres
+
+dbSecret:
+  name: supercards-db-secret
+
+configMap:
+  name: supercards-config

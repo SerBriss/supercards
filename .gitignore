@@ -38,3 +38,7 @@ out/
 
 ### Kotlin ###
 .kotlin
+
+### Helm ###
+deploy/helm/supercards-stack/charts/
+deploy/helm/supercards-stack/Chart.lock
