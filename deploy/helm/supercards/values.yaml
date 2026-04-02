@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: docker.id/serbriss/supercards
   tag: "0.0.1-SNAPSHOT"
-  pullPolicy: Never        # "Never" for local minikube; "IfNotPresent" otherwise
+  pullPolicy: Never
 
 service:
   type: ClusterIP
@@ -17,7 +17,7 @@ ingress:
 resources: {}
 
 db:
-  jdbcUrl: ""              # set by caller or umbrella chart
+  jdbcUrl: ""
   username: postgres
   password: postgres
 

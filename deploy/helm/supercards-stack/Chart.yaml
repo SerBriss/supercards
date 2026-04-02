@@ -6,9 +6,9 @@ version: 0.1.0
 dependencies:
   - name: supercards
     version: "0.1.0"
-    repository: "file://../supercards"         # local chart reference
+    repository: "file://../supercards"
 
   - name: postgresql
-    version: "18.5.14"                          # pin this — Bitnami changes key layout between major versions
+    version: "18.5.14"
     repository: "https://charts.bitnami.com/bitnami"
     condition: postgresql.enabled

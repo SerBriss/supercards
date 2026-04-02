@@ -1,9 +1,0 @@
-dependencies:
-- name: supercards
-  repository: file://../supercards
-  version: 0.1.0
-- name: postgresql
-  repository: https://charts.bitnami.com/bitnami
-  version: 18.5.14
-digest: sha256:d59c5557ba18b8c78093a554d7caf986dfd5608bf0a7c87d640f049c97efe56a
-generated: "2026-04-01T19:13:21.52181+03:00"
