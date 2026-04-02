@@ -1,0 +1,24 @@
+postgresql:
+  enabled: true
+  auth:
+    username: postgres
+    password: postgres
+    database: postgres
+  primary:
+    persistence:
+      enabled: true
+      size: 1Gi
+
+supercards:
+  replicaCount: 1
+  image:
+    repository: docker.id/serbriss/supercards
+    tag: "0.0.1-SNAPSHOT"
+    pullPolicy: Never
+  service:
+    type: ClusterIP
+    port: 8199
+  db:
+    jdbcUrl: "jdbc:postgresql://stack-postgresql:5432/postgres"
+    username: postgres
+    password: postgres

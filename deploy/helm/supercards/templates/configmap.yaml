@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configMap.name }}
+  labels:
+    {{- include "supercards.labels" . | nindent 4 }}
+data:
+  SERVER_PORT: {{ .Values.service.port | quote }}
+  SPRING_APPLICATION_NAME: "supercards"
+  SPRING_JPA_HIBERNATE_DDL_AUTO: "update"

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "supercards.fullname" . }}
+  labels:
+    {{- include "supercards.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "supercards.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "supercards.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: supercards
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.service.port }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.configMap.name }}
+            - secretRef:
+                name: {{ .Values.dbSecret.name }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
